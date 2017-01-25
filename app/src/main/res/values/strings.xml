@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Gas App</string>
+
+    <string name="lbl_origin">Navigate From</string>
+    <string name="lbl_use_current_location">Use Current Location</string>
+    <string name="lbl_destination">Destination</string>
+    <string name="lbl_submit_origin_destination">Submit</string>
+
+    <string name="err_requires_location_permissions">This app requires permission to see your current location.</string>
+    <string name="err_failed_to_get_location">Failed to determine your current location.</string>
 </resources>
