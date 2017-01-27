@@ -2,6 +2,7 @@ package tooearly.com.gasapp;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -21,13 +22,11 @@ import java.util.List;
 
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
-interface Callback<T>
-{
-    void handle(T t);
-}
-
 public class OriginDestinationActivity extends AppCompatActivity implements LocationListener {
+//    public static final String TAG = "OriginDestinationActivity";
     public static final int LOCATION_PERMISSIONS = 0x1EADBEA0;
+    public static final String ORIGIN_EXTRA = "tooearly.com.gasapp.origin_extra";
+    public static final String DESTINATION_EXTRA = "tooearly.com.gasapp.destination_extra";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,9 +51,17 @@ public class OriginDestinationActivity extends AppCompatActivity implements Loca
     AppCompatCheckBox check_use_current;
     EditText txt_origin, txt_destination;
 
-    @SuppressWarnings("unused")
-    void sumbitClicked(View view) {
-
+    public void submitClicked(View view) {
+        String origin = txt_origin.getText().toString().trim();
+        String destination = txt_destination.getText().toString().trim();
+        if (origin.isEmpty() || destination.isEmpty()) {
+            Toast.makeText(this, R.string.err_provide_origin_destination, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        Intent intent = new Intent(this, PlanRouteActivity.class);
+        intent.putExtra(ORIGIN_EXTRA, origin);
+        intent.putExtra(DESTINATION_EXTRA, destination);
+        startActivity(intent);
     }
 
     boolean usingCurrentLocation = true;
@@ -97,32 +104,35 @@ public class OriginDestinationActivity extends AppCompatActivity implements Loca
                     Toast.makeText(OriginDestinationActivity.this, R.string.err_requires_location_permissions, Toast.LENGTH_SHORT).show();
                     return;
                 }
-                try {
-                    LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-                    Location loc = null;
-
-                    final int MIN_TIME_BW_UPDATES = 1000 * 50,
-                              MIN_DISTANCE_CHANGE_FOR_UPDATES = 500;
-                    if (lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-                        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, OriginDestinationActivity.this);
-                        loc = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                    }
-                    else if (lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
-                        lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, OriginDestinationActivity.this);
-                        loc = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-                    }
-                    else if (lm.isProviderEnabled(LocationManager.PASSIVE_PROVIDER)) {
-                        lm.requestLocationUpdates(LocationManager.PASSIVE_PROVIDER, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, OriginDestinationActivity.this);
-                        loc = lm.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
-                    }
-
-                    OriginDestinationActivity.this.onLocationChanged(loc);
-                }
-                catch (SecurityException e) {
-                    Toast.makeText(OriginDestinationActivity.this, R.string.err_requires_location_permissions, Toast.LENGTH_SHORT).show();
-                }
+                initializeLocationManager();
             }
         });
+    }
+    private void initializeLocationManager() {
+        try {
+            LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+            Location loc = null;
+
+            final int MIN_TIME_BW_UPDATES = 1000 * 50,
+                    MIN_DISTANCE_CHANGE_FOR_UPDATES = 500;
+            if (lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, OriginDestinationActivity.this);
+                loc = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            }
+            else if (lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+                lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, OriginDestinationActivity.this);
+                loc = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+            }
+            else if (lm.isProviderEnabled(LocationManager.PASSIVE_PROVIDER)) {
+                lm.requestLocationUpdates(LocationManager.PASSIVE_PROVIDER, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, OriginDestinationActivity.this);
+                loc = lm.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
+            }
+
+            OriginDestinationActivity.this.onLocationChanged(loc);
+        }
+        catch (SecurityException e) {
+            Toast.makeText(OriginDestinationActivity.this, R.string.err_requires_location_permissions, Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
