@@ -1,4 +1,5 @@
 <resources>
+    <!-- Application -->
     <string name="app_name">Gas App</string>
     <string name="gas_station_prompt">Choose a Gas Station</string>
     <string-array name="gas_stations">
@@ -10,4 +11,20 @@
         <item>7-Eleven</item>
 
     </string-array>
+    <string name="app_name">Gas App</string>
+
+    <!-- Origin/Destination Layout -->
+    <string name="lbl_origin">Navigate From</string>
+    <string name="lbl_use_current_location">Use Current Location</string>
+    <string name="lbl_destination">Destination</string>
+    <string name="lbl_submit_origin_destination">Submit</string>
+
+    <!-- Origin/Destination Errors -->
+    <string name="err_requires_location_permissions">This app requires permission to see your current location.</string>
+    <string name="err_failed_to_get_location">Failed to determine your current location.</string>
+    <string name="err_provide_origin_destination">You must provide both an origin and a destination.</string>
+
+    <!-- Planning Route Layout -->
+    <string name="lbl_planning_route">Planning your route…</string>
+
 </resources>
