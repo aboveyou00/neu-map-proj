@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Gas App</string>
+    <string name="gas_station_prompt">Choose a Gas Station</string>
+    <string-array name="gas_stations">
+        <item>Shell</item>
+        <item>Maverick</item>
+        <item>BP</item>
+        <item>Chevron</item>
+        <item>Smiths</item>
+        <item>7-Eleven</item>
+
+    </string-array>
 </resources>
