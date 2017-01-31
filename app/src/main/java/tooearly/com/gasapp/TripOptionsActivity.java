@@ -1,7 +1,9 @@
 package tooearly.com.gasapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -9,6 +11,7 @@ public class TripOptionsActivity extends AppCompatActivity {
     private TextView titleText;
     private SeekBar sb;
     private TextView valuetxt;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,7 +23,7 @@ public class TripOptionsActivity extends AppCompatActivity {
         sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar sb, int progress, boolean fromUser) {
-                valuetxt.setText(String.valueOf(progress));
+                valuetxt.setText(String.valueOf(progress) + " %");
             }
 
             @Override
@@ -33,5 +36,10 @@ public class TripOptionsActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void submitClicked(View view) {
+        Intent navigationIntent = new Intent(this, OriginDestinationActivity.class);
+        startActivity(navigationIntent);
     }
 }

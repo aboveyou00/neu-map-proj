@@ -7,17 +7,17 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_gravity="center"
         android:gravity="center"
         android:paddingTop="5dp"
-        app:srcCompat="@drawable/logo"
+        app:srcCompat="@drawable/map_logo"
         android:id="@+id/imageView"
         android:layout_weight="0.70" />
 
     <TextView
         style="@style/AppExtraLargeText"
-        android:text="GAsP"
+        android:text="@string/app_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -25,11 +25,12 @@
 
     <Button
         style="@style/AppMediumText"
-        android:text="Begin planning"
+        android:text="@string/lbl_begin_planning"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
+        android:onClick="beginPlanningClicked"
         android:id="@+id/button" />
 
 </LinearLayout>
