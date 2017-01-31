@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_trip_options"
     android:layout_width="match_parent"
@@ -20,7 +20,7 @@
             android:text="@string/lbl_trip_options"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textSize="30dp"
+            android:textSize="30sp"
             android:paddingBottom="50dp"
             android:id="@+id/titleText">
         </TextView>
@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/lbl_tank_size"
-            android:textSize="25dp"
+            android:textSize="25sp"
             android:id="@+id/tankSize">
         </TextView>
         <EditText
@@ -43,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/lbl_miles_per_gallon"
-            android:textSize="25dp"
+            android:textSize="25sp"
             android:paddingTop="30dp"
             android:id="@+id/mpg">
         </TextView>
@@ -58,7 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/lbl_gas_tank_percentage"
-            android:textSize="25dp"
+            android:textSize="25sp"
             android:paddingTop="30dp"
             android:id="@+id/gasTankPercentage">
         </TextView>
@@ -70,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/lbl_tank_empty"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:id="@+id/gasTankPercentageEmpty">
             </TextView>
             <SeekBar
@@ -85,7 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/lbl_tank_full"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:id="@+id/gasTankPercentageFull">
             </TextView>
         </LinearLayout>
@@ -95,7 +95,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:text="@string/lbl_gas_tank_percentage_placeholder"
-            android:textSize="25dp"
+            android:textSize="25sp"
             android:id="@+id/valueTxt">
         </TextView>
 
@@ -107,7 +107,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/lbl_fuel_type"
-                android:textSize="25dp"
+                android:textSize="25sp"
                 android:paddingBottom="10dp"
                 android:paddingRight="100dp"
                 android:paddingEnd="100dp"
@@ -117,7 +117,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/lbl_specific_gas_station"
-                android:textSize="25dp"
+                android:textSize="25sp"
                 android:paddingTop="30dp"
                 android:id="@+id/specificGasStation">
             </TextView>
@@ -137,8 +137,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/lbl_unleaded"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:paddingRight="120dp"
+                    android:paddingEnd="120dp"
                     android:checked="true">
                 </RadioButton>
                 <RadioButton
@@ -146,7 +147,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/lbl_diesel"
-                    android:textSize="20dp">
+                    android:textSize="20sp">
                 </RadioButton>
             </RadioGroup>
             <Spinner
@@ -154,7 +155,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:entries="@array/gas_stations"
-                android:textSize="45dp"
+                android:textSize="45sp"
                 android:prompt="@string/gas_station_prompt">
             </Spinner>
         </LinearLayout>
@@ -163,11 +164,11 @@
             android:layout_height="75dp"
             android:layout_width="match_parent"
             android:text="@string/lbl_submit_plan_trip"
-            android:textSize="25dp"
+            android:textSize="25sp"
 
             android:onClick="submitClicked">
         </Button>
 
     </LinearLayout>
 
-</RelativeLayout>
+</ScrollView>
