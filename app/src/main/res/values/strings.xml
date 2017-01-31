@@ -21,7 +21,7 @@
     <string name="lbl_gas_tank_percentage">Current Gas Tank Percentage</string>
     <string name="lbl_tank_empty">Empty</string>
     <string name="lbl_tank_full">Full</string>
-    <string name="lbl_gas_tank_percentage_placeholder">60 %</string>
+    <string name="lbl_gas_tank_percentage_placeholder">50 %</string>
     <string name="lbl_fuel_type">Fuel Type</string>
     <string name="lbl_specific_gas_station">Specific Gas Station</string>
     <string name="lbl_unleaded">Unleaded</string>
