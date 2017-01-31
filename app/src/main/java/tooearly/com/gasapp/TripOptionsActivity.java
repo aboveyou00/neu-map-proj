@@ -22,7 +22,7 @@ public class TripOptionsActivity extends AppCompatActivity {
         sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar sb, int progress, boolean fromUser) {
-                valuetxt.setText(String.valueOf(progress));
+                valuetxt.setText(String.valueOf(progress) + " %");
             }
 
             @Override
