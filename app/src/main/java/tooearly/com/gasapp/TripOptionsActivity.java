@@ -1,5 +1,6 @@
 package tooearly.com.gasapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -38,6 +39,7 @@ public class TripOptionsActivity extends AppCompatActivity {
     }
 
     public void submitClicked(View view) {
-
+        Intent navigationIntent = new Intent(this, OriginDestinationActivity.class);
+        startActivity(navigationIntent);
     }
 }
