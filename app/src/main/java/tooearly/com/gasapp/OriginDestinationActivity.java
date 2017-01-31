@@ -24,7 +24,7 @@ import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
 public class OriginDestinationActivity extends AppCompatActivity implements LocationListener {
 //    public static final String TAG = "OriginDestinationActivity";
-    public static final int LOCATION_PERMISSIONS = 0x1EADBEA0;
+    public static final int LOCATION_PERMISSIONS = 0xBEA0;
     public static final String ORIGIN_EXTRA = "tooearly.com.gasapp.origin_extra";
     public static final String DESTINATION_EXTRA = "tooearly.com.gasapp.destination_extra";
 
