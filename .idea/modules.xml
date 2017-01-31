@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/map-proj.iml" filepath="$PROJECT_DIR$/map-proj.iml" />
       <module fileurl="file://$PROJECT_DIR$/neu-map-proj.iml" filepath="$PROJECT_DIR$/neu-map-proj.iml" />
     </modules>
   </component>
