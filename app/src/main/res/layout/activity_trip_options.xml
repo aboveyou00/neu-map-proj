@@ -70,17 +70,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/lbl_tank_empty"
+                android:paddingRight="350dp"
                 android:textSize="20sp"
                 android:id="@+id/gasTankPercentageEmpty">
             </TextView>
-            <SeekBar
-                android:id="@+id/userGasTankPercentage"
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:max="100"
-                android:progress="50">
-            </SeekBar>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -88,6 +82,18 @@
                 android:textSize="20sp"
                 android:id="@+id/gasTankPercentageFull">
             </TextView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <SeekBar
+                android:id="@+id/userGasTankPercentage"
+                android:layout_width="430dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:progress="50"
+                android:max="100">
+            </SeekBar>
         </LinearLayout>
         <TextView
             android:layout_width="wrap_content"

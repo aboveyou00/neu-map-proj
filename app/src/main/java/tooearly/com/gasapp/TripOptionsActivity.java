@@ -8,7 +8,6 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 public class TripOptionsActivity extends AppCompatActivity {
-    private TextView titleText;
     private SeekBar sb;
     private TextView valuetxt;
 
