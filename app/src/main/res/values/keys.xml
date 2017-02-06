@@ -2,4 +2,7 @@
 <resources>
     <string name="uri_gas_price_api">http://devapi.mygasfeed.com/</string>
     <string name="gas_price_api_key">06tkmmdazp</string>
+
+    <string name="uri_google_maps_api">https://maps.googleapis.com/maps/api/directions/json</string>
+    <string name="google_maps_api_key">AIzaSyA7Ebwxh2_6kLnipanT0fLUMo1WiiC4n90</string>
 </resources>

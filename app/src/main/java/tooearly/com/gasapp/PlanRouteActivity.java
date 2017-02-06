@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 
 public class PlanRouteActivity extends AppCompatActivity {
     public static final String TAG = "PlanRouteActivity";
@@ -28,12 +27,7 @@ public class PlanRouteActivity extends AppCompatActivity {
             String origin = params[0];
             String destination = params[1];
 
-            try {
-                Thread.sleep(2000);
-            }
-            catch (InterruptedException e) {
-                Log.wtf(TAG, e);
-            }
+            String directions = DirectionService.getDirections(PlanRouteActivity.this, origin, destination);
 
             return new PlannedTrip(origin, destination);
         }
