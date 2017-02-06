@@ -27,7 +27,7 @@ public class PlanRouteActivity extends AppCompatActivity {
             String origin = params[0];
             String destination = params[1];
 
-            String directions = DirectionService.getDirections(PlanRouteActivity.this, origin, destination);
+            NavigationDirections directions = DirectionService.getDirections(PlanRouteActivity.this, origin, destination);
 
             return new PlannedTrip(origin, destination);
         }
