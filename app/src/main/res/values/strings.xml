@@ -1,6 +1,7 @@
 <resources>
     <!-- Application -->
     <string name="app_name">GAsP</string>
+    <string name="old_key" templatemergestrategy="preserve" translatable="false">AIzaSyBMKm1FSwZmuMpaJnjUDSBjr1UAJ5W07ak</string>
 
     <!-- Title -->
     <string name="lbl_begin_planning">Begin planning</string>
@@ -41,5 +42,9 @@
 
     <!-- Planning Route Layout -->
     <string name="lbl_planning_route">Planning your route…</string>
+
+
+
+    <string name="navigateBtn">Navigate</string>
 
 </resources>
