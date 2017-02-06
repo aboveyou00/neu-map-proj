@@ -32,19 +32,4 @@ public class NavigationActivity extends AppCompatActivity implements OnMapReadyC
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 
-    public void navigateClicked(View view) {
-        double lat = 40.7660926;
-
-        double lng = -111.89057359999998;
-
-                String format = "geo:0,0?q=" + lat + "," + lng + "( Location title)";
-
-        Uri uri = Uri.parse(format);
-
-
-        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-
-    }
 }
