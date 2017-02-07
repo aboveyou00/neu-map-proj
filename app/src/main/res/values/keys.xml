@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="uri_gas_price_api">http://devapi.mygasfeed.com/</string>
+    <string name="uri_gas_price_api">http://api.mygasfeed.com/</string>
     <string name="gas_price_api_key">06tkmmdazp</string>
 
     <string name="uri_google_maps_api">https://maps.googleapis.com/maps/api/directions/json</string>

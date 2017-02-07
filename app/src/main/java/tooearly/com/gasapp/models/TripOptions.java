@@ -11,7 +11,7 @@ public class TripOptions implements Serializable {
         this.stationType = stationType;
     }
 
-    float tankSizeGallons, mpg, gasTankPercentage;
-    FuelType fuelType;
-    String stationType;
+    public final float tankSizeGallons, mpg, gasTankPercentage;
+    public final FuelType fuelType;
+    public final String stationType;
 }
