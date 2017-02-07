@@ -33,6 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/txt_origin"
+            android:imeOptions="actionNext"
             android:inputType="textPostalAddress" />
         <android.support.v7.widget.AppCompatCheckBox
             android:layout_width="match_parent"
@@ -48,12 +49,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/txt_destination"
+            android:imeOptions="actionGo"
             android:inputType="textPostalAddress" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="submitClicked"
+            android:id="@+id/btn_submit"
             android:text="@string/lbl_submit_origin_destination" />
 
     </LinearLayout>

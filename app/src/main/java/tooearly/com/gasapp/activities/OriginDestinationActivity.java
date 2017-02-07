@@ -12,9 +12,13 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatCheckBox;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -40,6 +44,7 @@ public class OriginDestinationActivity extends AppCompatActivity implements Loca
         check_use_current = (AppCompatCheckBox)findViewById(R.id.check_use_current);
         txt_origin = (EditText)findViewById(R.id.txt_origin);
         txt_destination = (EditText)findViewById(R.id.txt_destination);
+        btn_submit = (Button)findViewById(R.id.btn_submit);
 
         check_use_current.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -51,6 +56,14 @@ public class OriginDestinationActivity extends AppCompatActivity implements Loca
         });
         check_use_current.setChecked(true);
 
+        txt_destination.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_GO /* && event != null && event.getAction() == KeyEvent.ACTION_UP */) btn_submit.performClick();
+                return true;
+            }
+        });
+
         options = (TripOptions)getIntent().getSerializableExtra(TripOptionsActivity.TRIP_OPTIONS_EXTRA);
     }
 
@@ -58,6 +71,7 @@ public class OriginDestinationActivity extends AppCompatActivity implements Loca
 
     AppCompatCheckBox check_use_current;
     EditText txt_origin, txt_destination;
+    Button btn_submit;
 
     public void submitClicked(View view) {
         String origin = txt_origin.getText().toString().trim();
