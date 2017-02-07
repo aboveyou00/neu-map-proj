@@ -47,9 +47,10 @@ public class DirectionService {
             JSONObject routeObj = obj.getJSONArray("routes").getJSONObject(0);
             JSONArray routeLegsArr = routeObj.getJSONArray("legs");
 
-            JSONObject[] legs = new JSONObject[routeLegsArr.length()];
+            NavigationLeg[] legs = new NavigationLeg[routeLegsArr.length()];
             for (int q = 0; q < routeLegsArr.length(); q++) {
-                legs[q] = routeLegsArr.getJSONObject(q);
+                JSONObject legObj = routeLegsArr.getJSONObject(q);
+                legs[q] = NavigationLeg.fromJson(legObj);
             }
             return new NavigationDirections(origin, destination, waypoints, legs);
         }
