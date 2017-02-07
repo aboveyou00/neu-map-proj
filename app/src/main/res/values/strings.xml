@@ -19,7 +19,9 @@
         <item>7-Eleven</item>
     </string-array>
     <string name="lbl_tank_size">Tank Size (Gallons)</string>
+    <string name="default_tank_size">15</string>
     <string name="lbl_miles_per_gallon">Miles Per Gallon</string>
+    <string name="default_miles_per_gallon">30</string>
     <string name="lbl_gas_tank_percentage">Current Gas Tank Percentage</string>
     <string name="lbl_tank_empty">Empty</string>
     <string name="lbl_tank_full">Full</string>
