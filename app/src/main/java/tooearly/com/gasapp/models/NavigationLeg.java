@@ -37,7 +37,7 @@ public class NavigationLeg implements Serializable {
         return new NavigationLeg(startAddr, endAddr, startLat, startLng, endLat, endLng, steps);
     }
 
-    String startAddress, endAddress;
-    float startLat, startLng, endLat, endLng;
-    NavigationStep[] steps;
+    public final String startAddress, endAddress;
+    public final float startLat, startLng, endLat, endLng;
+    public final NavigationStep[] steps;
 }

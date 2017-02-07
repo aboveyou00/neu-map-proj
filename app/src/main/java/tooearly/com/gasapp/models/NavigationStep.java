@@ -38,7 +38,7 @@ public class NavigationStep implements Serializable {
 
     public static final float METERS_PER_MILE = 1609.34f;
 
-    float distanceMiles;
-    float startLat, startLng, endLat, endLng;
-    String polylinePoints, htmlInstructions;
+    public final float distanceMiles;
+    public final float startLat, startLng, endLat, endLng;
+    public final String polylinePoints, htmlInstructions;
 }
