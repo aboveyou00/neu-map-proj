@@ -1,4 +1,4 @@
-package tooearly.com.gasapp;
+package tooearly.com.gasapp.models;
 
 public class GasStation {
     public GasStation(String id, String stationName, String address, double lat, double lng, double price, String priceDate) {

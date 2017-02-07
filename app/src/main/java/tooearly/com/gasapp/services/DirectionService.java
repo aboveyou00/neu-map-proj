@@ -1,4 +1,4 @@
-package tooearly.com.gasapp;
+package tooearly.com.gasapp.services;
 
 import android.content.Context;
 import android.util.Log;
@@ -9,6 +9,12 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+
+import tooearly.com.gasapp.R;
+import tooearly.com.gasapp.models.NavigationDirections;
+import tooearly.com.gasapp.models.NavigationLeg;
+import tooearly.com.gasapp.util.HttpRequest;
+import tooearly.com.gasapp.util.HttpResponse;
 
 public class DirectionService {
     private static final String TAG = "DirectionService";

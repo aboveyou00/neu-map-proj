@@ -1,4 +1,4 @@
-package tooearly.com.gasapp;
+package tooearly.com.gasapp.models;
 
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -1,4 +1,4 @@
-package tooearly.com.gasapp;
+package tooearly.com.gasapp.services;
 
 import android.app.Activity;
 import android.util.Log;
@@ -6,6 +6,12 @@ import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import tooearly.com.gasapp.R;
+import tooearly.com.gasapp.models.FuelType;
+import tooearly.com.gasapp.models.GasStation;
+import tooearly.com.gasapp.util.HttpRequest;
+import tooearly.com.gasapp.util.HttpResponse;
 
 public class GasPriceService {
     public static final String TAG = "GasPriceService";

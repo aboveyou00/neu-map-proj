@@ -15,7 +15,7 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-        <activity android:name=".TitleActivity">
+        <activity android:name=".activities.TitleActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,10 +23,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".TripOptionsActivity" />
-        <activity android:name=".OriginDestinationActivity" />
-        <activity android:name=".PlanRouteActivity" />
-        <activity android:name=".NavigationActivity" />
+        <activity android:name=".activities.TripOptionsActivity" />
+        <activity android:name=".activities.OriginDestinationActivity" />
+        <activity android:name=".activities.PlanRouteActivity" />
+        <activity android:name=".activities.NavigationActivity" />
     </application>
 
 </manifest>

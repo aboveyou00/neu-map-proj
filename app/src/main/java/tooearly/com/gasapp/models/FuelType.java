@@ -1,4 +1,4 @@
-package tooearly.com.gasapp;
+package tooearly.com.gasapp.models;
 
 public enum FuelType {
     Regular("reg"),
