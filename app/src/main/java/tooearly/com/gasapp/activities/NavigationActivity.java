@@ -1,3 +1,68 @@
+//package tooearly.com.gasapp;
+//
+//import android.content.Intent;
+//import android.graphics.Color;
+//import android.support.v7.app.AppCompatActivity;
+//import android.os.Bundle;
+//import android.view.View;
+//
+//import com.google.android.gms.maps.CameraUpdateFactory;
+//import com.google.android.gms.maps.GoogleMap;
+//import com.google.android.gms.maps.OnMapReadyCallback;
+//import com.google.android.gms.maps.SupportMapFragment;
+//import com.google.android.gms.maps.model.LatLng;
+//import com.google.android.gms.maps.model.MarkerOptions;
+//import com.google.android.gms.maps.model.PolylineOptions;
+//
+//public class NavigationActivity extends AppCompatActivity implements OnMapReadyCallback {
+//    GoogleMap mMap = null;
+//
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_navigation);
+//        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+//                .findFragmentById(R.id.map);
+//        mapFragment.getMapAsync(this);
+//    }
+//
+//    @Override
+//    public void onMapReady(GoogleMap googleMap) {
+//        mMap = googleMap;
+//
+//        // Add a marker in Sydney, Australia, and move the camera.
+//        LatLng slc = new LatLng(40, -111);
+//        mMap.addMarker(new MarkerOptions().position(slc).title("Marker in slc"));
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(slc));
+//    }
+//
+//    public void navigateClicked(View view) {
+//        LatLng slc = new LatLng(40, -111);
+//        mMap.addPolyline(new PolylineOptions().add(
+//                    slc,
+//                    new LatLng(50, -20)
+//                )
+//                .width(10)
+//                .color(Color.RED)
+//        );
+//
+////        double lat = 40.7660926;
+////
+////        double lng = -111.89057359999998;
+////
+////                String format = "geo:0,0?q=" + lat + "," + lng + "( Location title)";
+////
+////        Uri uri = Uri.parse(format);
+////
+////
+////        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+////        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+////        startActivity(intent);
+//
+//    }
+//}
+
+
 package tooearly.com.gasapp.activities;
 
 import android.content.Intent;
