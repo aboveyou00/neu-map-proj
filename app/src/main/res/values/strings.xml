@@ -10,6 +10,7 @@
     <string name="lbl_trip_options">Trip Options</string>
     <string name="gas_station_prompt">Choose a Gas Station</string>
     <string-array name="gas_stations">
+        <item>Any</item>
         <item>Shell</item>
         <item>Maverick</item>
         <item>BP</item>

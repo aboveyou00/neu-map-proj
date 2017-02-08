@@ -3,7 +3,6 @@ package tooearly.com.gasapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -17,7 +16,9 @@ public class NavigationActivity extends AppCompatActivity implements OnMapReadyC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        directions = (NavigationDirections)getIntent().getSerializableExtra(PlanRouteActivity.DIRECTIONS_EXTRA);
+        Intent intent = getIntent();
+        directions = (NavigationDirections)intent.getSerializableExtra(PlanRouteActivity.DIRECTIONS_EXTRA);
+        options = (TripOptions)intent.getSerializableExtra(TripOptionsActivity.TRIP_OPTIONS_EXTRA);
 
         setContentView(R.layout.activity_navigation);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -26,6 +27,7 @@ public class NavigationActivity extends AppCompatActivity implements OnMapReadyC
     }
 
     NavigationDirections directions;
+    TripOptions options;
 
     @Override
     public void onMapReady(GoogleMap googleMap) {

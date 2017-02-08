@@ -29,8 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/lbl_tank_size"
-            android:textSize="25sp"
-            android:id="@+id/tankSize">
+            android:textSize="25sp">
         </TextView>
         <EditText
             android:layout_width="match_parent"
@@ -44,8 +43,7 @@
             android:layout_height="match_parent"
             android:text="@string/lbl_miles_per_gallon"
             android:textSize="25sp"
-            android:paddingTop="30dp"
-            android:id="@+id/mpg">
+            android:paddingTop="30dp">
         </TextView>
         <EditText
             android:layout_width="match_parent"
@@ -59,28 +57,26 @@
             android:layout_height="match_parent"
             android:text="@string/lbl_gas_tank_percentage"
             android:textSize="25sp"
-            android:paddingTop="30dp"
-            android:id="@+id/gasTankPercentage">
+            android:paddingTop="30dp">
         </TextView>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/lbl_tank_empty"
                 android:paddingRight="350dp"
-                android:textSize="20sp"
-                android:id="@+id/gasTankPercentageEmpty">
+                android:paddingEnd="350dp"
+                android:textSize="20sp">
             </TextView>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/lbl_tank_full"
-                android:textSize="20sp"
-                android:id="@+id/gasTankPercentageFull">
+                android:textSize="20sp">
             </TextView>
         </LinearLayout>
         <LinearLayout
@@ -116,16 +112,14 @@
                 android:textSize="25sp"
                 android:paddingBottom="10dp"
                 android:paddingRight="100dp"
-                android:paddingEnd="100dp"
-                android:id="@+id/fuelType">
+                android:paddingEnd="100dp">
             </TextView>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/lbl_specific_gas_station"
                 android:textSize="25sp"
-                android:paddingTop="30dp"
-                android:id="@+id/specificGasStation">
+                android:paddingTop="30dp">
             </TextView>
         </LinearLayout>
 
@@ -157,7 +151,7 @@
                 </RadioButton>
             </RadioGroup>
             <Spinner
-                android:id="@+id/spinner1"
+                android:id="@+id/userGasStation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:entries="@array/gas_stations"

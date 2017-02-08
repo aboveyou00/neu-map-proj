@@ -46,7 +46,11 @@ public class OriginDestinationActivity extends AppCompatActivity implements Loca
             }
         });
         check_use_current.setChecked(true);
+
+        options = (TripOptions)getIntent().getSerializableExtra(TripOptionsActivity.TRIP_OPTIONS_EXTRA);
     }
+
+    TripOptions options;
 
     AppCompatCheckBox check_use_current;
     EditText txt_origin, txt_destination;
@@ -61,6 +65,7 @@ public class OriginDestinationActivity extends AppCompatActivity implements Loca
         Intent intent = new Intent(this, PlanRouteActivity.class);
         intent.putExtra(ORIGIN_EXTRA, origin);
         intent.putExtra(DESTINATION_EXTRA, destination);
+        intent.putExtra(TripOptionsActivity.TRIP_OPTIONS_EXTRA, options);
         startActivity(intent);
     }
 

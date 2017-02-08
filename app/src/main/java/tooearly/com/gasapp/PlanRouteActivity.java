@@ -17,8 +17,12 @@ public class PlanRouteActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String origin = intent.getStringExtra(OriginDestinationActivity.ORIGIN_EXTRA);
         String destination = intent.getStringExtra(OriginDestinationActivity.DESTINATION_EXTRA);
+        options = (TripOptions)getIntent().getSerializableExtra(TripOptionsActivity.TRIP_OPTIONS_EXTRA);
+
         new PlanRouteTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, origin, destination);
     }
+
+    TripOptions options;
 
     private class PlanRouteTask extends AsyncTask<String, Void, NavigationDirections> {
         @Override
@@ -26,6 +30,7 @@ public class PlanRouteActivity extends AppCompatActivity {
             if (params == null || params.length != 2) throw new IllegalArgumentException("Can't plan route without both origin and destination");
             String origin = params[0];
             String destination = params[1];
+            TripOptions options = PlanRouteActivity.this.options;
 
             NavigationDirections directions = DirectionService.getDirections(PlanRouteActivity.this, origin, destination);
 
@@ -42,6 +47,7 @@ public class PlanRouteActivity extends AppCompatActivity {
 
             Intent intent = new Intent(PlanRouteActivity.this, NavigationActivity.class);
             intent.putExtra(DIRECTIONS_EXTRA, directions);
+            intent.putExtra(TripOptionsActivity.TRIP_OPTIONS_EXTRA, PlanRouteActivity.this.options);
             startActivity(intent);
         }
     }
