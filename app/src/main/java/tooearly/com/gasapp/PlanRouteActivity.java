@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 public class PlanRouteActivity extends AppCompatActivity {
     public static final String TAG = "PlanRouteActivity";
-    public static final String PLANNED_TRIP_EXTRA = "tooearly.com.gasapp.planned_trip_extra";
+    public static final String DIRECTIONS_EXTRA = "tooearly.com.gasapp.directions_extra";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,24 +20,28 @@ public class PlanRouteActivity extends AppCompatActivity {
         new PlanRouteTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, origin, destination);
     }
 
-    private class PlanRouteTask extends AsyncTask<String, Void, PlannedTrip> {
+    private class PlanRouteTask extends AsyncTask<String, Void, NavigationDirections> {
         @Override
-        protected PlannedTrip doInBackground(String... params) {
+        protected NavigationDirections doInBackground(String... params) {
             if (params == null || params.length != 2) throw new IllegalArgumentException("Can't plan route without both origin and destination");
             String origin = params[0];
             String destination = params[1];
 
             NavigationDirections directions = DirectionService.getDirections(PlanRouteActivity.this, origin, destination);
 
-            return new PlannedTrip(origin, destination);
+            //TODO: find gas stations along route
+
+            //TODO: navigate form origin to destination with the gas stations as waypoints
+
+            return directions;
         }
 
         @Override
-        protected void onPostExecute(PlannedTrip trip) {
-            super.onPostExecute(trip);
+        protected void onPostExecute(NavigationDirections directions) {
+            super.onPostExecute(directions);
 
             Intent intent = new Intent(PlanRouteActivity.this, NavigationActivity.class);
-            intent.putExtra(PLANNED_TRIP_EXTRA, trip);
+            intent.putExtra(DIRECTIONS_EXTRA, directions);
             startActivity(intent);
         }
     }

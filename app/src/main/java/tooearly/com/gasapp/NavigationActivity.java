@@ -16,11 +16,16 @@ public class NavigationActivity extends AppCompatActivity implements OnMapReadyC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        directions = (NavigationDirections)getIntent().getSerializableExtra(PlanRouteActivity.DIRECTIONS_EXTRA);
+
         setContentView(R.layout.activity_navigation);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
+
+    NavigationDirections directions;
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -31,5 +36,4 @@ public class NavigationActivity extends AppCompatActivity implements OnMapReadyC
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
-
 }
