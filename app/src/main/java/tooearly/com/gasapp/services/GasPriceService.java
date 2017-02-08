@@ -16,6 +16,7 @@ import tooearly.com.gasapp.util.HttpResponse;
 
 public class GasPriceService {
     public static final String TAG = "GasPriceService";
+    public static double lastPriceUsed = 3.50;
 
     @Nullable
     public static GasStation[] getStations(Activity context, float latitude, float longitude, float radiusMiles, FuelType type) {
@@ -63,8 +64,19 @@ public class GasPriceService {
 
     private static GasStation jsonToGasStation(JSONObject stationObj, FuelType type) throws JSONException {
         double lat = Double.parseDouble(stationObj.getString("lat")),
-               lng = Double.parseDouble(stationObj.getString("lng")),
-               price = Double.parseDouble(stationObj.getString(type.value + "_price"));
+                lng = Double.parseDouble(stationObj.getString("lng"));
+
+        double price;
+
+        String priceStr = stationObj.getString(type.value + "_price");
+
+        if(priceStr.equals("N/A")) {
+            price = lastPriceUsed;
+        } else {
+
+            price = Double.parseDouble(priceStr);
+        }
+        lastPriceUsed = price;
         String stationName = stationObj.getString("station"),
                address = stationObj.getString("address"),
                priceDate = stationObj.getString(type.value + "_date"),

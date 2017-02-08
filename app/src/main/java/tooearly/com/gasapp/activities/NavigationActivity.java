@@ -1,71 +1,7 @@
-//package tooearly.com.gasapp;
-//
-//import android.content.Intent;
-//import android.graphics.Color;
-//import android.support.v7.app.AppCompatActivity;
-//import android.os.Bundle;
-//import android.view.View;
-//
-//import com.google.android.gms.maps.CameraUpdateFactory;
-//import com.google.android.gms.maps.GoogleMap;
-//import com.google.android.gms.maps.OnMapReadyCallback;
-//import com.google.android.gms.maps.SupportMapFragment;
-//import com.google.android.gms.maps.model.LatLng;
-//import com.google.android.gms.maps.model.MarkerOptions;
-//import com.google.android.gms.maps.model.PolylineOptions;
-//
-//public class NavigationActivity extends AppCompatActivity implements OnMapReadyCallback {
-//    GoogleMap mMap = null;
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_navigation);
-//        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-//                .findFragmentById(R.id.map);
-//        mapFragment.getMapAsync(this);
-//    }
-//
-//    @Override
-//    public void onMapReady(GoogleMap googleMap) {
-//        mMap = googleMap;
-//
-//        // Add a marker in Sydney, Australia, and move the camera.
-//        LatLng slc = new LatLng(40, -111);
-//        mMap.addMarker(new MarkerOptions().position(slc).title("Marker in slc"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(slc));
-//    }
-//
-//    public void navigateClicked(View view) {
-//        LatLng slc = new LatLng(40, -111);
-//        mMap.addPolyline(new PolylineOptions().add(
-//                    slc,
-//                    new LatLng(50, -20)
-//                )
-//                .width(10)
-//                .color(Color.RED)
-//        );
-//
-////        double lat = 40.7660926;
-////
-////        double lng = -111.89057359999998;
-////
-////                String format = "geo:0,0?q=" + lat + "," + lng + "( Location title)";
-////
-////        Uri uri = Uri.parse(format);
-////
-////
-////        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-////        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-////        startActivity(intent);
-//
-//    }
-//}
-
-
 package tooearly.com.gasapp.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -76,11 +12,19 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
+
+import org.json.JSONException;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
 import tooearly.com.gasapp.R;
 import tooearly.com.gasapp.models.NavigationDirections;
@@ -89,6 +33,9 @@ import tooearly.com.gasapp.models.TripOptions;
 
 public class NavigationActivity extends AppCompatActivity implements OnMapReadyCallback {
     public static final String TAG = "NavigationActivity";
+    private List<Marker> originMarkers = new ArrayList<>();
+    private List<Marker> destinationMarkers = new ArrayList<>();
+    private List<Polyline> polylinePaths = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,10 +58,109 @@ public class NavigationActivity extends AppCompatActivity implements OnMapReadyC
     public void onMapReady(GoogleMap googleMap) {
         GoogleMap mMap = googleMap;
 
-        // Add a marker in Sydney, Australia, and move the camera.
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        System.out.println(directions);
+        System.out.println(options);
+
+        polylinePaths = new ArrayList<>();
+        originMarkers = new ArrayList<>();
+        destinationMarkers = new ArrayList<>();
+
+        for(int i = 0; i < directions.legs.length; i++) {
+            if(i > 0 && i < directions.legs.length) {
+                LatLng legStartLoc = new LatLng(directions.legs[i].startLat, directions.legs[i].startLng);
+                LatLng legEndLoc = new LatLng(directions.legs[i].endLat, directions.legs[i].endLng);
+                mMap.addMarker(new MarkerOptions()
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.pushpin))
+                        .title(directions.legs[i].endAddress)
+                        .position(legStartLoc));
+            }
+
+            for(int j = 0; j < directions.legs[i].steps.length; j++) {
+                PolylineOptions polylineOptions = new PolylineOptions().
+                        geodesic(true).
+                        color(Color.BLUE).
+                        width(10);
+
+                List<LatLng> polyline = new ArrayList<>();
+
+                polyline = decodePolyLine(directions.legs[i].steps[j].polylinePoints);
+
+                for (int l = 0; l < polyline.size(); l++) {
+                    polylineOptions.add(polyline.get(l));
+                }
+                mMap.addPolyline(polylineOptions);
+            }
+        }
+
+        LatLng startLoc = new LatLng(directions.legs[0].startLat, directions.legs[0].startLng);
+        LatLng endLoc = new LatLng(directions.legs[0].endLat, directions.legs[0].endLng);
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(startLoc, 10));
+
+        originMarkers.add(mMap.addMarker(new MarkerOptions()
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.start_blue))
+                .title(directions.legs[0].startAddress)
+                .position(startLoc)));
+        destinationMarkers.add(mMap.addMarker(new MarkerOptions()
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.end_green))
+                .title(directions.legs[0].endAddress)
+                .position(endLoc)));
+
+
+
+        /*Draws entire line? I'm not sure if this is different than if I break this down like above.*/
+//                PolylineOptions polylineOptions = new PolylineOptions().
+//                        geodesic(true).
+//                        color(Color.BLUE).
+//                        width(10);
+//
+//            List<LatLng> polyline = new ArrayList<>();
+//
+//            polyline = decodePolyLine(directions.polyline);
+//
+//            for (int i = 0; i < polyline.size(); i++) {
+//                polylineOptions.add(polyline.get(i));
+//            }
+//
+//            polylinePaths.add(mMap.addPolyline(polylineOptions));
+
+    }
+
+    private static List<LatLng> decodePolyLine(final String poly) {
+        int len = poly.length();
+        int index = 0;
+        List<LatLng> decoded = new ArrayList<LatLng>();
+        int lat = 0;
+        int lng = 0;
+
+        while (index < len) {
+            int b;
+            int shift = 0;
+            int result = 0;
+            do {
+                b = poly.charAt(index++) - 63;
+                result |= (b & 0x1f) << shift;
+                shift += 5;
+            } while (b >= 0x20);
+            int dlat = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
+            lat += dlat;
+
+            shift = 0;
+            result = 0;
+            do {
+                b = poly.charAt(index++) - 63;
+                result |= (b & 0x1f) << shift;
+                shift += 5;
+            } while (b >= 0x20);
+            int dlng = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
+            lng += dlng;
+
+            decoded.add(new LatLng(
+                    lat / 100000d, lng / 100000d
+            ));
+        }
+
+        return decoded;
     }
 
     private String encodec(String str) {
@@ -163,4 +209,6 @@ public class NavigationActivity extends AppCompatActivity implements OnMapReadyC
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         startActivity(intent);
     }
+
+
 }

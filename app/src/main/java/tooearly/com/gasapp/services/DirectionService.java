@@ -3,12 +3,16 @@ package tooearly.com.gasapp.services;
 import android.content.Context;
 import android.util.Log;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
 import tooearly.com.gasapp.R;
 import tooearly.com.gasapp.models.NavigationDirections;
@@ -52,13 +56,16 @@ public class DirectionService {
             JSONObject obj = new JSONObject(response.data);
             JSONObject routeObj = obj.getJSONArray("routes").getJSONObject(0);
             JSONArray routeLegsArr = routeObj.getJSONArray("legs");
+            JSONObject overview_polylineJson = routeObj.getJSONObject("overview_polyline");
+//            System.out.println(overview_polylineJson);
 
             NavigationLeg[] legs = new NavigationLeg[routeLegsArr.length()];
             for (int q = 0; q < routeLegsArr.length(); q++) {
                 JSONObject legObj = routeLegsArr.getJSONObject(q);
                 legs[q] = NavigationLeg.fromJson(legObj);
             }
-            return new NavigationDirections(origin, destination, waypoints, legs);
+//            List<LatLng> polyline = decodePolyLine();
+            return new NavigationDirections(origin, destination, waypoints, legs, overview_polylineJson.getString("points"));
         }
         catch (JSONException e) {
             Log.wtf(TAG, e);
