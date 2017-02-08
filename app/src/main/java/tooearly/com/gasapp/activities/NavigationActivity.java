@@ -93,7 +93,7 @@ public class NavigationActivity extends AppCompatActivity implements OnMapReadyC
         }
 
         LatLng startLoc = new LatLng(directions.legs[0].startLat, directions.legs[0].startLng);
-        LatLng endLoc = new LatLng(directions.legs[0].endLat, directions.legs[0].endLng);
+        LatLng endLoc = new LatLng(directions.legs[directions.legs.length - 1].endLat, directions.legs[directions.legs.length - 1].endLng);
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(startLoc, 10));
 
@@ -103,7 +103,7 @@ public class NavigationActivity extends AppCompatActivity implements OnMapReadyC
                 .position(startLoc)));
         destinationMarkers.add(mMap.addMarker(new MarkerOptions()
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.end_green))
-                .title(directions.legs[0].endAddress)
+                .title(directions.legs[directions.legs.length - 1].endAddress)
                 .position(endLoc)));
 
 

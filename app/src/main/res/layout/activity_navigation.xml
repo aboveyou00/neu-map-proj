@@ -8,7 +8,7 @@
     tools:context="tooearly.com.gasapp.activities.NavigationActivity">
     <TextView
         style="@style/AppExtraLargeText"
-        android:text="Testing Map"
+        android:text="Your Route"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
