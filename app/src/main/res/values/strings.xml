@@ -45,8 +45,7 @@
 
     <!-- Planning Route Layout -->
     <string name="lbl_planning_route">Planning your route…</string>
-
-
+    <string name="err_failed_to_plan_route">Failed to calculate optimum route. Try to select more lenient route settings.</string>
 
     <string name="navigateBtn">Navigate</string>
 

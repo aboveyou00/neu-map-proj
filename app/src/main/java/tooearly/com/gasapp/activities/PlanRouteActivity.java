@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,7 +84,7 @@ public class PlanRouteActivity extends AppCompatActivity {
         private GasStation findBestGasStation(float lat, float lng) {
             TripOptions options = PlanRouteActivity.this.options;
 
-            GasStation[] stations = GasPriceService.getStations(PlanRouteActivity.this, lat, lng, 40, options.fuelType, true);
+            GasStation[] stations = GasPriceService.getStations(PlanRouteActivity.this, lat, lng, 50, options.fuelType, true);
             if (stations == null || stations.length == 0) return null;
             if (options.stationType.equals("Any")) return stations[0];
 
@@ -97,6 +98,11 @@ public class PlanRouteActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(NavigationDirections directions) {
             super.onPostExecute(directions);
+
+            if (directions == null) {
+                Toast.makeText(PlanRouteActivity.this, R.string.err_failed_to_plan_route, Toast.LENGTH_LONG);
+                return;
+            }
 
             Intent intent = new Intent(PlanRouteActivity.this, NavigationActivity.class);
             intent.putExtra(DIRECTIONS_EXTRA, directions);
